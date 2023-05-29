@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { Task } from 'types';
-import useStore from 'store';
+import { taskStore } from 'store/taskStore';
 import { useError } from 'hooks/useError';
 
 export const useMutateTask = () => {
   const queryClient = useQueryClient();
   const { switchErrorHandling } = useError();
-  const resetEditedTask = useStore((state) => state.resetEditedTask);
+  const resetEditedTask = taskStore((state) => state.resetEditedTask);
 
   const createTaskMutation = useMutation(
     // Omitを使用してTask型から'id' | 'created_at' | 'updated_at'プロパティを除外した新しい型を作成
